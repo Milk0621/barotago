@@ -1,3 +1,35 @@
+:root {
+    /* 지하철 노선 1~9호선 */
+    --line-1: #0F218B;
+    --line-2: #10a643;
+    --line-3: #de6d00;
+    --line-4: #0099d1;
+    --line-5: #a95094;
+    --line-6: #d08d1a;
+    --line-7: #657931;
+    --line-8: #e74e6d;
+    --line-9: #b58600;
+
+    /* 인천 노선 */
+    --line-incheon-1: #6496df;
+    --line-incheon-2: #fd9800;
+
+    /* 기타 */
+    --line-suinin: #fcd204;         /* 수인분당선 */
+    --line-shinbundang: #cd2234;    /* 신분당선 */
+    --line-gyeongui: #79c0a0;       /* 경의중앙선 */
+    --line-airport: #038fa0;        /* 공항철도 */
+    --line-gyeongchun: #33c7a7;     /* 경춘선 */
+    --line-uijeongbu: #f6ba02;      /* 의정부경전철 */
+    --line-yongin: #56ab32;         /* 용인경전철 */
+    --line-gyeonggang: #004ea7;     /* 경강선 */
+    --line-ui: #b7b7b7;             /* 우이신설경전철 */
+    --line-seohae: #8be800;         /* 서해선 */
+    --line-gimpo: #dbc57d;          /* 김포골드라인 */
+    --line-sillim: #3399ff;         /* 신림선 */
+    --line-gtx-a: #9f5e8f;          /* GTX-A */
+}
+
 .wrap {
     max-width: 1200px;
     margin: 0 auto;
