@@ -1,4 +1,10 @@
 :root {
+    /* 폰트 */
+    --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
+
     /* 지하철 노선 1~9호선 */
     --line-1: #0F218B;
     --line-2: #10a643;
@@ -28,6 +34,21 @@
     --line-gimpo: #dbc57d;          /* 김포골드라인 */
     --line-sillim: #3399ff;         /* 신림선 */
     --line-gtx-a: #9f5e8f;          /* GTX-A */
+}
+
+/* 초기화 */
+* { 
+    box-sizing: border-box; 
+    font-family: var(--font-sans) !important;
+    font-weight: 400;
+}
+
+html, body, #root {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
 }
 
 .wrap {
