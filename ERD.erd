@@ -1,0 +1,516 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": 0,
+    "scrollLeft": -335.267,
+    "zoomLevel": 1,
+    "show": 511,
+    "database": 4,
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "QbJHx9p-tIII4dQTwRBPe"
+    ],
+    "relationshipIds": [],
+    "indexIds": [
+      "SakDaxfZzjVclu3-Jd0KV",
+      "jFg6XyJHfUlLFwPSAyABX",
+      "wMzosVAjAGk7eSzWcNQzd"
+    ],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "QbJHx9p-tIII4dQTwRBPe": {
+        "id": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "service_line_stations",
+        "comment": "각 노선에 포함된 역 목록과 순서",
+        "columnIds": [
+          "zLgMI1DM2s8W26OJl2oAm",
+          "hV4f9xRBIMviumPKIrUhn",
+          "W0pSb7TzDF0vK6zx2M2xR",
+          "aGY0vStXAlYA_wcrUwQFV",
+          "LD7K6FIL0XOnyb6otyxiz",
+          "iA3I4oDI1FNMGn3EksrXg",
+          "Cg1h2yhyYJIRewmg5YyGN",
+          "Gwwo6MZm0nnAdkhXzHRw1",
+          "Vu2Us4djp0lhwrAK3D8hE",
+          "4gCx2G60FlMBYE0zKiGFf",
+          "sbC9eHNn6Gc32u7Fos3Yo"
+        ],
+        "seqColumnIds": [
+          "zLgMI1DM2s8W26OJl2oAm",
+          "hV4f9xRBIMviumPKIrUhn",
+          "W0pSb7TzDF0vK6zx2M2xR",
+          "aGY0vStXAlYA_wcrUwQFV",
+          "LD7K6FIL0XOnyb6otyxiz",
+          "iA3I4oDI1FNMGn3EksrXg",
+          "Cg1h2yhyYJIRewmg5YyGN",
+          "Gwwo6MZm0nnAdkhXzHRw1",
+          "Vu2Us4djp0lhwrAK3D8hE",
+          "4gCx2G60FlMBYE0zKiGFf",
+          "sbC9eHNn6Gc32u7Fos3Yo",
+          "UcSdInMhfrSesP7xBjPC3"
+        ],
+        "ui": {
+          "x": 1025.7234,
+          "y": 199.2127,
+          "zIndex": 2,
+          "widthName": 108,
+          "widthComment": 174,
+          "color": "#B4B4B4"
+        },
+        "meta": {
+          "updateAt": 1761707594874,
+          "createAt": 1761706528871
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "zLgMI1DM2s8W26OJl2oAm": {
+        "id": "zLgMI1DM2s8W26OJl2oAm",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "id",
+        "comment": "고유 ID",
+        "dataType": "BIGINT",
+        "default": "",
+        "options": 11,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706693740,
+          "createAt": 1761706598772
+        }
+      },
+      "hV4f9xRBIMviumPKIrUhn": {
+        "id": "hV4f9xRBIMviumPKIrUhn",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "service_line_code",
+        "comment": "노선 식별 코드 (예: SL_GYEONGIN)",
+        "dataType": "VARCHAR(100)",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 93,
+          "widthComment": 185,
+          "widthDataType": 81,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706809113,
+          "createAt": 1761706704936
+        }
+      },
+      "W0pSb7TzDF0vK6zx2M2xR": {
+        "id": "W0pSb7TzDF0vK6zx2M2xR",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "ext_station_code",
+        "comment": "외부(공공데이터) 역 코드",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 90,
+          "widthComment": 136,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706887646,
+          "createAt": 1761706786482
+        }
+      },
+      "aGY0vStXAlYA_wcrUwQFV": {
+        "id": "aGY0vStXAlYA_wcrUwQFV",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "station_name_ko",
+        "comment": "역 이름",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 91,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706927742,
+          "createAt": 1761706891431
+        }
+      },
+      "LD7K6FIL0XOnyb6otyxiz": {
+        "id": "LD7K6FIL0XOnyb6otyxiz",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "station_name_en",
+        "comment": "역 영문이름",
+        "dataType": "VARCHAR",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 91,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706958255,
+          "createAt": 1761706929083
+        }
+      },
+      "iA3I4oDI1FNMGn3EksrXg": {
+        "id": "iA3I4oDI1FNMGn3EksrXg",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "seq",
+        "comment": "순서",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761706979388,
+          "createAt": 1761706958255
+        }
+      },
+      "Cg1h2yhyYJIRewmg5YyGN": {
+        "id": "Cg1h2yhyYJIRewmg5YyGN",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "line_code",
+        "comment": "호선",
+        "dataType": "VARCHAR",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707060887,
+          "createAt": 1761706979388
+        }
+      },
+      "Gwwo6MZm0nnAdkhXzHRw1": {
+        "id": "Gwwo6MZm0nnAdkhXzHRw1",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "lat",
+        "comment": "x 좌표",
+        "dataType": "DECIMAL",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707123417,
+          "createAt": 1761707062880
+        }
+      },
+      "Vu2Us4djp0lhwrAK3D8hE": {
+        "id": "Vu2Us4djp0lhwrAK3D8hE",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "lng",
+        "comment": "y 좌표",
+        "dataType": "DECIMAL",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707143638,
+          "createAt": 1761707125285
+        }
+      },
+      "4gCx2G60FlMBYE0zKiGFf": {
+        "id": "4gCx2G60FlMBYE0zKiGFf",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "address",
+        "comment": "역 주소",
+        "dataType": "VARCHAR",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707172030,
+          "createAt": 1761707143639
+        }
+      },
+      "sbC9eHNn6Gc32u7Fos3Yo": {
+        "id": "sbC9eHNn6Gc32u7Fos3Yo",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "phone",
+        "comment": "역 전화번호",
+        "dataType": "VARCHAR",
+        "default": "NULL",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 65,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707189046,
+          "createAt": 1761707172031
+        }
+      },
+      "UcSdInMhfrSesP7xBjPC3": {
+        "id": "UcSdInMhfrSesP7xBjPC3",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1761707508346,
+          "createAt": 1761707508346
+        }
+      }
+    },
+    "relationshipEntities": {},
+    "indexEntities": {
+      "QVG2skihxhasHYtGKKNBc": {
+        "id": "QVG2skihxhasHYtGKKNBc",
+        "name": "",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1761707273430,
+          "createAt": 1761707273430
+        }
+      },
+      "m3-YdUQNmOrnvNkN9ymd2": {
+        "id": "m3-YdUQNmOrnvNkN9ymd2",
+        "name": "",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [
+          "9QXp-N93icyqDpFx-572B",
+          "cXoPvhJUP8CFYnWAT8X-Y"
+        ],
+        "seqIndexColumnIds": [
+          "9QXp-N93icyqDpFx-572B",
+          "cXoPvhJUP8CFYnWAT8X-Y"
+        ],
+        "unique": false,
+        "meta": {
+          "updateAt": 1761707324545,
+          "createAt": 1761707279480
+        }
+      },
+      "SakDaxfZzjVclu3-Jd0KV": {
+        "id": "SakDaxfZzjVclu3-Jd0KV",
+        "name": "line_station",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [
+          "MlinK3Yrp8sWG3Swg-KCr",
+          "Hh3pchduZ6JyXj1kB3cAt"
+        ],
+        "seqIndexColumnIds": [
+          "MlinK3Yrp8sWG3Swg-KCr",
+          "Hh3pchduZ6JyXj1kB3cAt"
+        ],
+        "unique": true,
+        "meta": {
+          "updateAt": 1761707403548,
+          "createAt": 1761707375354
+        }
+      },
+      "jFg6XyJHfUlLFwPSAyABX": {
+        "id": "jFg6XyJHfUlLFwPSAyABX",
+        "name": "line_seq",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [
+          "bQiizkw768zTm7IsJb_6k",
+          "Oai-QYh6wlOBvrHmNfgsr"
+        ],
+        "seqIndexColumnIds": [
+          "bQiizkw768zTm7IsJb_6k",
+          "Oai-QYh6wlOBvrHmNfgsr"
+        ],
+        "unique": true,
+        "meta": {
+          "updateAt": 1761707444545,
+          "createAt": 1761707433859
+        }
+      },
+      "wMzosVAjAGk7eSzWcNQzd": {
+        "id": "wMzosVAjAGk7eSzWcNQzd",
+        "name": "query",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [
+          "KZkBo_0kRUMKcoHbckasL",
+          "yUQX101vJ5ce4f0_umZF5"
+        ],
+        "seqIndexColumnIds": [
+          "KZkBo_0kRUMKcoHbckasL",
+          "yUQX101vJ5ce4f0_umZF5"
+        ],
+        "unique": false,
+        "meta": {
+          "updateAt": 1761707488279,
+          "createAt": 1761707450531
+        }
+      },
+      "eJGFf_DV6ftbuxlYW415V": {
+        "id": "eJGFf_DV6ftbuxlYW415V",
+        "name": "",
+        "tableId": "QbJHx9p-tIII4dQTwRBPe",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1761707470866,
+          "createAt": 1761707470866
+        }
+      }
+    },
+    "indexColumnEntities": {
+      "9QXp-N93icyqDpFx-572B": {
+        "id": "9QXp-N93icyqDpFx-572B",
+        "indexId": "m3-YdUQNmOrnvNkN9ymd2",
+        "columnId": "hV4f9xRBIMviumPKIrUhn",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707304350,
+          "createAt": 1761707304350
+        }
+      },
+      "cXoPvhJUP8CFYnWAT8X-Y": {
+        "id": "cXoPvhJUP8CFYnWAT8X-Y",
+        "indexId": "m3-YdUQNmOrnvNkN9ymd2",
+        "columnId": "W0pSb7TzDF0vK6zx2M2xR",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707315935,
+          "createAt": 1761707315935
+        }
+      },
+      "MlinK3Yrp8sWG3Swg-KCr": {
+        "id": "MlinK3Yrp8sWG3Swg-KCr",
+        "indexId": "SakDaxfZzjVclu3-Jd0KV",
+        "columnId": "hV4f9xRBIMviumPKIrUhn",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707405425,
+          "createAt": 1761707402983
+        }
+      },
+      "Hh3pchduZ6JyXj1kB3cAt": {
+        "id": "Hh3pchduZ6JyXj1kB3cAt",
+        "indexId": "SakDaxfZzjVclu3-Jd0KV",
+        "columnId": "W0pSb7TzDF0vK6zx2M2xR",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707408110,
+          "createAt": 1761707403548
+        }
+      },
+      "bQiizkw768zTm7IsJb_6k": {
+        "id": "bQiizkw768zTm7IsJb_6k",
+        "indexId": "jFg6XyJHfUlLFwPSAyABX",
+        "columnId": "hV4f9xRBIMviumPKIrUhn",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707443921,
+          "createAt": 1761707443921
+        }
+      },
+      "Oai-QYh6wlOBvrHmNfgsr": {
+        "id": "Oai-QYh6wlOBvrHmNfgsr",
+        "indexId": "jFg6XyJHfUlLFwPSAyABX",
+        "columnId": "iA3I4oDI1FNMGn3EksrXg",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707444545,
+          "createAt": 1761707444545
+        }
+      },
+      "KZkBo_0kRUMKcoHbckasL": {
+        "id": "KZkBo_0kRUMKcoHbckasL",
+        "indexId": "wMzosVAjAGk7eSzWcNQzd",
+        "columnId": "hV4f9xRBIMviumPKIrUhn",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707486494,
+          "createAt": 1761707486494
+        }
+      },
+      "yUQX101vJ5ce4f0_umZF5": {
+        "id": "yUQX101vJ5ce4f0_umZF5",
+        "indexId": "wMzosVAjAGk7eSzWcNQzd",
+        "columnId": "iA3I4oDI1FNMGn3EksrXg",
+        "orderType": 1,
+        "meta": {
+          "updateAt": 1761707488279,
+          "createAt": 1761707488279
+        }
+      }
+    },
+    "memoEntities": {}
+  }
+}
