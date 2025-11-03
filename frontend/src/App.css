@@ -4,6 +4,13 @@
     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
     "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", sans-serif;
+    --font-color: #111;
+
+    /* 배경색 */
+    --bg-color: #F6F8F7;
+
+    /* 외곽선 색 */
+    --border-color: #cccccc;
 
     /* 지하철 노선 1~9호선 */
     --line-1: #0F218B;
@@ -41,6 +48,7 @@
     box-sizing: border-box; 
     font-family: var(--font-sans) !important;
     font-weight: 400;
+    color: var(--font-color);
 }
 
 html, body, #root {
@@ -55,3 +63,14 @@ h1, h2, h3, h4, h5, h6, p {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+/* 노선 색상 클래스 */
+.line-1 { background-color: var(--line-1); }
+.line-2 { background-color: var(--line-2); }
+.line-3 { background-color: var(--line-3); }
+.line-4 { background-color: var(--line-4); }
+.line-5 { background-color: var(--line-5); }
+.line-6 { background-color: var(--line-6); }
+.line-7 { background-color: var(--line-7); }
+.line-8 { background-color: var(--line-8); }
+.line-9 { background-color: var(--line-9); }

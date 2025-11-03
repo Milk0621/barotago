@@ -31,7 +31,9 @@
     top: calc(100%);
     left: calc(50%);
     transform: translateX(-50%);
-    width: 150px;
+    width: 170px;
+    height: 400px;
+    overflow: scroll;
     border: 1px solid var(--border-color);
 }
 
