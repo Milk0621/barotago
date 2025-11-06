@@ -38,12 +38,12 @@ function Home() {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside); //cleanup
         }
-    }, [])
+    }, [listOpen]);
 
     return(
         <>
             <header className="dropdown" ref={dropdownRef}>
-                <button className="dropdown-btn" onClick={()=>setListOpen(true)}>{line} 노선 <span className="dropdown-icon">▼</span></button>
+                <button className="dropdown-btn" onClick={()=>setListOpen((prev)=>!prev)}>{line} 노선 <span className="dropdown-icon">▼</span></button>
                 {listOpen && (
                     <ul className="dropdown-list">
                         {subwayLines.map((lineName)=>(
