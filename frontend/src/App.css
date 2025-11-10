@@ -63,14 +63,3 @@ h1, h2, h3, h4, h5, h6, p {
     max-width: 1200px;
     margin: 0 auto;
 }
-
-/* 노선 색상 클래스 */
-.line-1 { background-color: var(--line-1); }
-.line-2 { background-color: var(--line-2); }
-.line-3 { background-color: var(--line-3); }
-.line-4 { background-color: var(--line-4); }
-.line-5 { background-color: var(--line-5); }
-.line-6 { background-color: var(--line-6); }
-.line-7 { background-color: var(--line-7); }
-.line-8 { background-color: var(--line-8); }
-.line-9 { background-color: var(--line-9); }

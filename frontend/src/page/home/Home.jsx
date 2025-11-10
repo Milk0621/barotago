@@ -1,27 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
 
+// 노선 정보 (컴포넌트 밖으로 빼서 재생성을 막음)
+const subwayLines = [
+    { "lineCode": "LINE1", "lineName": "1호선", "colorHex": "#0F218B", "textColor": "light" },
+    { "lineCode": "LINE2", "lineName": "2호선", "colorHex": "#10a643", "textColor": "light" },
+    { "lineCode": "LINE3", "lineName": "3호선", "colorHex": "#de6d00", "textColor": "light" },
+];
+
 function Home() {
-    const [listOpen, setListOpen] = useState(false);    // 드롭다운 상태
+    const [listOpen, setListOpen] = useState(false);                    // 드롭다운 상태
+    const [selectedLine, setSelectedLine] = useState(subwayLines[0]);   // 현재 호선
     const dropdownRef = useRef(null);                   
-    const [line, setLine] = useState("1호선");          // 현재 호선
-
-    // 노선 목록
-    const subwayLines = [
-        "1호선",
-        "2호선",
-        "3호선",
-        "4호선",
-        "5호선",
-        "6호선",
-        "7호선",
-        "8호선",
-        "9호선",
-        "인천 1호선",
-        "인천 2호선",
-    ];
-
-    // 노선에 따른 색상 지정
+    
 
     // 드롭다운 밖 클릭 감지 이벤트
     useEffect(()=>{
@@ -42,20 +33,26 @@ function Home() {
 
     return(
         <>
-            <header className="dropdown" ref={dropdownRef}>
-                <button className="dropdown-btn" onClick={()=>setListOpen((prev)=>!prev)}>{line} 노선 <span className="dropdown-icon">▼</span></button>
+            <header className="dropdown" ref={dropdownRef} style={{backgroundColor: selectedLine.colorHex}}>
+                <button 
+                    className="dropdown-btn" 
+                    onClick={()=>setListOpen((prev)=>!prev)}
+                    style={{color: selectedLine.textColor === "light" ? "#fff" : "#111",}}
+                >
+                    {selectedLine.lineName} 노선 ▾
+                </button>
                 {listOpen && (
                     <ul className="dropdown-list">
-                        {subwayLines.map((lineName)=>(
+                        {subwayLines.map((item)=>(
                             <li 
-                                key={lineName}
+                                key={item.lineCode}
                                 className="dropdown-item"
                                 onClick={()=>{
-                                    setLine(lineName);
+                                    setSelectedLine(item);
                                     setListOpen(false);
                                 }}
                             >
-                                {lineName}
+                                {item.lineName}
                             </li>
                         ))}
                     </ul>
