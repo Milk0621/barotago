@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
+import SubwayLine from "../../components/subwayLine/SubwayLine";
 
 // 노선 정보 (컴포넌트 밖으로 빼서 재생성을 막음)
 const subwayLines = [
@@ -31,6 +32,13 @@ function Home() {
         }
     }, [listOpen]);
 
+    // 노선별 역 목록 (API 연동 예정)
+    const lineStations = [
+        { name: "연천" }, { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },
+        { name: "지행" }, { name: "덕정" }, { name: "덕계" }, { name: "양주" }, { name: "녹양" }, { name: "가능" }, { name: "의정부" },
+        { name: "서울"}
+    ];
+
     return(
         <>
             <header className="dropdown" ref={dropdownRef} style={{backgroundColor: selectedLine.colorHex}}>
@@ -58,10 +66,8 @@ function Home() {
                     </ul>
                 )}
             </header>
-
-            <div className="line-container">
-                
-            </div>
+            
+            <SubwayLine name={selectedLine.lineName} color={selectedLine.colorHex} stations={lineStations} size={7} />
         </>
     )
 }

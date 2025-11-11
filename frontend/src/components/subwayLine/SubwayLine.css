@@ -1,0 +1,71 @@
+.line-wrap {
+  position: relative;
+  display: grid;
+  gap: 40px;                     /* 행 간 간격(세로) */
+  margin: 4.5rem 5.5rem;
+}
+
+.stations {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(var(--cols, 7), 1fr);
+    padding: 1.75rem;
+}
+
+.stations::before {
+    content: "";
+    position: absolute;
+    left: 0;                 
+    right: 0;
+    top: 25px;                  
+    height: 22px;
+    background: var(--line-color);
+    z-index: -1;
+}
+
+/* 다음 행과 연결되는 세로 트랙 - 오른쪽 */
+.row-connector-r::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 120px;
+    background: var(--line-color);
+    right: calc(0px);
+    bottom: calc(0px - 65px);
+    z-index: -1;
+}
+
+/* 다음 행과 연결되는 세로 트랙 - 왼쪽 */
+.row-connector-l::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 120px;
+    background: var(--line-color);
+    left: calc(0px);
+    bottom: calc(0px - 65px);
+    z-index: -1;
+}
+
+.station {
+    text-align: center;
+    width: max-content;
+}
+
+.dot {
+    display: block;
+    margin: 0 auto;
+    width: 1rem;
+    height: 1rem;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
+    display: inline-block;
+    margin-top: 6px;
+}
