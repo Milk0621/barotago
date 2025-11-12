@@ -1,8 +1,22 @@
+import { useRef, useState } from "react";
+import "./Header.css";
+
 function Header() {
+    const [open, setOpen] = useState(false);
+    const closeBtnRef = useRef(null);
+
     return (
-        <div style={{textAlign: 'center', padding: '44px 0'}}>
-            <img src="/img/logo.png" alt="barotago" />
-        </div>
+        <>
+            <header>
+                <img src="/img/logo.png" alt="barotago" />
+                <button className="hamburger" onClick={()=>setOpen(true)}>
+                    <span />
+                    <span />
+                    <span />
+                </button>
+            </header>
+            
+        </>
     )
 }
 

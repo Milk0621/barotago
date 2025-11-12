@@ -41,7 +41,7 @@ function Home() {
 
     return(
         <>
-            <header className="dropdown" ref={dropdownRef} style={{backgroundColor: selectedLine.colorHex}}>
+            <div className="dropdown" ref={dropdownRef} style={{backgroundColor: selectedLine.colorHex}}>
                 <button 
                     className="dropdown-btn" 
                     onClick={()=>setListOpen((prev)=>!prev)}
@@ -65,7 +65,7 @@ function Home() {
                         ))}
                     </ul>
                 )}
-            </header>
+            </div>
             
             <SubwayLine name={selectedLine.lineName} color={selectedLine.colorHex} stations={lineStations} size={7} />
         </>
