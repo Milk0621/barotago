@@ -34,7 +34,7 @@ function Home() {
 
     // 노선별 역 목록 (API 연동 예정)
     const lineStations = [
-        { name: "연천" }, { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },
+        { name: "연천", address: "대한민국 서울특별시", phone: "063-213-512" }, { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },
         { name: "지행" }, { name: "덕정" }, { name: "덕계" }, { name: "양주" }, { name: "녹양" }, { name: "가능" }, { name: "의정부" },
         { name: "서울"}
     ];

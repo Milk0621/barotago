@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './SubwayLine.css';
 
 // 지하철 노선 자르기
@@ -16,6 +17,8 @@ function SubwayLine({name, color, stations, size}) {
 
     const rows = chunk(stations, size);
 
+    const [selectedStation, setSelectedStation] = useState(null);
+
     return (
         <>
             <div className="line-wrap" style={{"--cols": size}}>
@@ -33,7 +36,7 @@ function SubwayLine({name, color, stations, size}) {
                     return (
                         <div key={rIdx} className={`stations ${isEvenRow ? "stations-ltr" : "stations-rtl"} ${hasNext ? isEvenRow ? "row-connector-r" : "row-connector-l" : ""}`} style={{ '--line-color': color }}>
                             {ordered.map((st, idx) => (
-                                <div className="station" key={idx}>
+                                <div className="station" key={idx} onClick={()=> {setSelectedStation(st)}}>
                                     <i className="dot" style={{borderColor: color}} />
                                     <span className="label">{st.name}</span>
                                 </div>
@@ -42,7 +45,24 @@ function SubwayLine({name, color, stations, size}) {
                     )
                 })}
             </div>
+
+            {selectedStation && (
+                <StationInfo
+                    station={selectedStation}
+                    onClose={() => setSelectedStation(null)} 
+                />
+            )}
         </>
+    )
+}
+
+function StationInfo({station}) {
+    return (
+        <div className="station-info">
+            <h3>{station.name}</h3>
+            <p>{station.address}</p>
+            <p>{station.phone}</p>
+        </div>
     )
 }
 
