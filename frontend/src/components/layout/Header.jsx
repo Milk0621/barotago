@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header() {
     const [open, setOpen] = useState(false);
-    const closeBtnRef = useRef(null);
 
     return (
         <>
@@ -26,10 +25,10 @@ function Header() {
                 </div>
                 <nav className="menu-list">
                     <div className="menu-title">메뉴</div>
-                        <a href="#timetable" onClick={() => setOpen(false)}>지하철 시간표</a>
-                        <a href="#route" onClick={() => setOpen(false)}>경로 검색</a>
-                        <a href="#lines" onClick={() => setOpen(false)}>노선</a>
-                        <a href="#notice" onClick={() => setOpen(false)}>대피소 안내</a>
+                    <Link to="/timetable" onClick={() => setOpen(false)}>지하철 시간표</Link>
+                    <Link to="/search" onClick={() => setOpen(false)}>검색</Link>
+                    <Link to="/lines" onClick={() => setOpen(false)}>노선</Link>
+                    <Link to="/notice" onClick={() => setOpen(false)}>대피소 안내</Link>
                 </nav>
             </div>
         </>

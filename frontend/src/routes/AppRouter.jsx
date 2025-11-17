@@ -8,6 +8,10 @@ function AppRouter() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path="/timetable" />
+                    <Route path="/search" />
+                    <Route path="/lines" />
+                    <Route path="/notice" />
                 </Route>
             </Routes>
         </BrowserRouter>
