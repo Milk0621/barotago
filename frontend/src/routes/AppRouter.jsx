@@ -10,7 +10,6 @@ function AppRouter() {
                     <Route index element={<Home />} />
                     <Route path="/timetable" />
                     <Route path="/search" />
-                    <Route path="/lines" />
                     <Route path="/notice" />
                 </Route>
             </Routes>

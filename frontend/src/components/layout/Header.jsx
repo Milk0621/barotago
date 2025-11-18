@@ -8,7 +8,7 @@ function Header() {
     return (
         <>
             <header>
-                <img src="/img/logo.png" alt="barotago" />
+                <Link to="/"><img src="/img/logo.png" alt="barotago" /></Link>
                 <button className="hamburger" onClick={() => setOpen(true)}>
                     <span />
                     <span />
@@ -20,14 +20,14 @@ function Header() {
             
             <div className={`drawer ${open ? "open" : ""}`}>
                 <div className="drawer-header">
-                    <img src="/img/logo.png" alt="barotago" />
+                    <Link to="/"><img src="/img/logo.png" alt="barotago" /></Link>
                     <button className="close" onClick={() => setOpen(false)}>x</button>
                 </div>
                 <nav className="menu-list">
                     <div className="menu-title">메뉴</div>
                     <Link to="/timetable" onClick={() => setOpen(false)}>지하철 시간표</Link>
                     <Link to="/search" onClick={() => setOpen(false)}>검색</Link>
-                    <Link to="/lines" onClick={() => setOpen(false)}>노선</Link>
+                    <Link to="/" onClick={() => setOpen(false)}>노선</Link>
                     <Link to="/notice" onClick={() => setOpen(false)}>대피소 안내</Link>
                 </nav>
             </div>
