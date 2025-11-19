@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './SubwayLine.css';
+import { Link } from 'react-router-dom';
 
 // 지하철 노선 자르기
 // 총 20개의 역을 7개씩 자른다고 했을 때 arr.length = 20, size = 7
@@ -13,7 +14,7 @@ function chunk(arr, size) {
 }
 
 // 노선 컴포넌트
-function SubwayLine({name, color, stations, size}) {
+function SubwayLine({color, textColor, stations, size}) {
 
     const rows = chunk(stations, size);
 
@@ -49,6 +50,8 @@ function SubwayLine({name, color, stations, size}) {
             {selectedStation && (
                 <StationInfo
                     station={selectedStation}
+                    color={color}
+                    textColor={textColor}
                     onClose={() => setSelectedStation(null)} 
                 />
             )}
@@ -56,12 +59,65 @@ function SubwayLine({name, color, stations, size}) {
     )
 }
 
-function StationInfo({station}) {
+function StationInfo({station, color, textColor, onClose}) {
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if(modalRef.current && !modalRef.current.contains(e.target)){
+                onClose();
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [onClose]);
+
     return (
-        <div className="station-info">
-            <h3>{station.name}</h3>
-            <p>{station.address}</p>
-            <p>{station.phone}</p>
+        <div className="station-overlay" onClick={onClose}>
+            <div className="station-modal"  ref={modalRef} onClick={(e) => e.stopPropagation()} style={{ borderColor: color }}>
+                <div 
+                    className="info-header"
+                    style={{
+                        backgroundColor: color,
+                        color: textColor === "light" ? "#fff" : "#111"
+                    }}
+                >
+                    <span>◀</span>
+                    <div className="station-name">
+                        <i style={{backgroundColor: color, fontSize: ".9rem"}}>{station.label}</i>
+                        <h3>{station.name}</h3>
+                    </div>
+                    <span>▶</span>
+                </div>
+                <div className="info-box">
+                    <div className="info-basic">
+                        <p>주소</p>
+                        <span>{station.address}</span>
+                        <p>전화번호</p>
+                        <span>{station.phone}</span>
+                    </div>
+                    <div className="facilities">
+                        {
+                            station.facilities.map((fc, idx)=>(
+                                <div className="facility">
+                                    <i className="icon" style={{backgroundColor: fc.iconColor}}></i>
+                                    <p>{fc.name}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div className="map">
+
+                    </div>
+                    <div className="link">
+                        <Link to="/notice">지하철 시간표</Link>
+                        <Link to="/notice">대피소 안내</Link>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

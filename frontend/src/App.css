@@ -48,7 +48,6 @@
     box-sizing: border-box; 
     font-family: var(--font-sans) !important;
     font-weight: 400;
-    color: var(--font-color);
 }
 
 html, body, #root {

@@ -34,9 +34,37 @@ function Home() {
 
     // 노선별 역 목록 (API 연동 예정)
     const lineStations = [
-        { name: "연천", address: "대한민국 서울특별시", phone: "063-213-512" }, { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },
-        { name: "지행" }, { name: "덕정" }, { name: "덕계" }, { name: "양주" }, { name: "녹양" }, { name: "가능" }, { name: "의정부" },
-        { name: "서울"}
+        { 
+            name: "연천", 
+            address: "경기도 연천군 연천읍 연천로 275", 
+            phone: "1544-7788", 
+            lineCodes: ["LINE1"], 
+            lineName: ["1호선"],
+            label: ["1"],
+            facilities: [
+                {
+                    name: "엘리베이터",
+                    iconColor: "#DE3517",
+                },
+                {
+                    name: "휠체어리프트",
+                    iconColor: "#C7B10D",
+                },
+                {
+                    name: "무인민원발급",
+                    iconColor: "#42AD11",
+                },
+                {
+                    name: "문화공간",
+                    iconColor: "#1161AD",
+                },
+                {
+                    name: "유아수유방",
+                    iconColor: "#6411AD",
+                },
+            ] 
+        }, 
+        { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },{ name: "지행" }, { name: "덕정" }, { name: "덕계" }, { name: "양주" }, { name: "녹양" }, { name: "가능" }, { name: "의정부" }, { name: "서울"}
     ];
 
     return(
@@ -67,7 +95,7 @@ function Home() {
                 )}
             </div>
             
-            <SubwayLine name={selectedLine.lineName} color={selectedLine.colorHex} stations={lineStations} size={7} />
+            <SubwayLine color={selectedLine.colorHex} textColor={selectedLine.textColor} stations={lineStations} size={7} />
         </>
     )
 }
