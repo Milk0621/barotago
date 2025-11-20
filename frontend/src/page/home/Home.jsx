@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import SubwayLine from "../../components/subwayLine/SubwayLine";
+import HeaderBar from "../../components/headerBar/HeaderBar";
 
 // 노선 정보 (컴포넌트 밖으로 빼서 재생성을 막음)
 const subwayLines = [
@@ -69,31 +70,12 @@ function Home() {
 
     return(
         <>
-            <div className="dropdown" ref={dropdownRef} style={{backgroundColor: selectedLine.colorHex}}>
-                <button 
-                    className="dropdown-btn" 
-                    onClick={()=>setListOpen((prev)=>!prev)}
-                    style={{color: selectedLine.textColor === "light" ? "#fff" : "#111",}}
-                >
-                    {selectedLine.lineName} 노선 ▾
-                </button>
-                {listOpen && (
-                    <ul className="dropdown-list">
-                        {subwayLines.map((item)=>(
-                            <li 
-                                key={item.lineCode}
-                                className="dropdown-item"
-                                onClick={()=>{
-                                    setSelectedLine(item);
-                                    setListOpen(false);
-                                }}
-                            >
-                                {item.lineName}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+            <HeaderBar
+                type="line"
+                subwayLines={subwayLines}
+                selectedLine={selectedLine}
+                setSelectedLine={setSelectedLine}
+            />
             
             <SubwayLine color={selectedLine.colorHex} textColor={selectedLine.textColor} stations={lineStations} size={7} />
         </>
