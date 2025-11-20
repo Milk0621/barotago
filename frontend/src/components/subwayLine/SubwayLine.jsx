@@ -61,6 +61,20 @@ function SubwayLine({color, textColor, stations, size}) {
 
 function StationInfo({station, color, textColor, onClose}) {
     const modalRef = useRef(null);
+    const mapRef = useRef(null);
+
+    useEffect(() => {
+        const kakao = window.kakao;
+        const container = mapRef.current; // 지도를 담을 영역의 DOM 참조
+
+        // 지도를 생성할 때 필요한 기본 옵션
+        const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
+        level: 3, //
+        };
+
+        new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+    }, []);
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -109,9 +123,7 @@ function StationInfo({station, color, textColor, onClose}) {
                             ))
                         }
                     </div>
-                    <div className="map">
-
-                    </div>
+                    <div className="map" ref={mapRef}></div>
                     <div className="link">
                         <Link to="/notice">지하철 시간표</Link>
                         <Link to="/notice">대피소 안내</Link>
