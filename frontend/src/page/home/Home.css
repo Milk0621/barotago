@@ -1,1 +1,18 @@
+.line-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.2rem 1.5rem;
+}
 
+.route-group {
+    display: flex;
+    gap: .25rem;
+}
+
+.route-group button {
+    background-color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: .8rem 1rem;
+}

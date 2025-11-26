@@ -76,7 +76,16 @@ function Home() {
                 selectedLine={selectedLine}
                 setSelectedLine={setSelectedLine}
             />
-            
+            <div className="line-info">
+                <div className="route-group">
+                    <button>1호선</button>
+                    <button>경인선 (구로-인천)</button>
+                    <button>경부 장항선(구로-신창)</button>
+                    <button>경부고속선</button>
+                    <button>병점기지선</button>
+                </div>
+                <span>{selectedLine.lineName} 0대 운행 중</span>
+            </div>
             <SubwayLine color={selectedLine.colorHex} textColor={selectedLine.textColor} stations={lineStations} size={7} />
         </>
     )
