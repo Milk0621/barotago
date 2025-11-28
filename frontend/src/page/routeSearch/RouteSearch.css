@@ -1,0 +1,30 @@
+.route-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem .7rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.route-search input,
+.route-search button {
+    flex: 1 1 200px;
+    border-radius: .5rem;
+    padding-left: 7px;
+    height: 40px;
+}
+
+.route-search input {
+    border: 2px solid var(--border-color);
+    color: #777;
+}
+
+.route-search button {
+    background-color: #fff;
+    border: 2px solid var(--line-1);
+    color: var(--line-1);
+    padding-left: 0;
+}
