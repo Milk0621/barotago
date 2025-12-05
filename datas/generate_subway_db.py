@@ -117,7 +117,7 @@ for index, row in stations.iterrows():
     
 conn.commit()
 
-print("✔ station 데이터 입력 완료!")
+print("station 데이터 입력 완료!")
 
 
 # service 테이블 insert
@@ -162,16 +162,31 @@ print("service_lines 입력 완료!")
 # service_line_station 테이블 insert
 print("service_line_station INSERT 중...")
 
+# station 테이블에서 station_id, station_name 조회
 cursor.execute("SELECT station_id, station_name FROM station")
-station_map = {row[1]: row[0] for row in cursor.fetchall()}
+
+# 조회된 모든 레코드 가져오기
+rows = cursor.fetchall()
+
+# 빈 딕셔너리 생성 (역 이름 → ID 매핑 저장할 공간)
+station_map = {}
+
+# 한 줄씩 순회하며 매핑 생성
+for row in rows:
+    # row는 (station_id, station_name) 형태의 튜플
+    station_id = row[0]
+    station_name = row[1]
+
+    # 딕셔너리에 저장 → { "서울역": 1 } 이런 식
+    station_map[station_name] = station_id
 
 for index, row in routes.iterrows():
 
-    # 1. 역 이름 clean() 적용
+    # 역 이름 clean() 적용
     raw_station_name = row["역명"]
     name = clean(raw_station_name)
 
-    # 2. 노선명 처리
+    # 노선명 처리
     raw_line_name = row["노선명"]
     line_name = clean(raw_line_name)
     code = generate_line_code(line_name)
