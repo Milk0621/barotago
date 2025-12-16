@@ -15,4 +15,12 @@
 		where parent_code is null
 		order by order_no
 	</select>
+	<select id="selectChildLines" resultType="ServiceLine">
+		select
+			line_code,
+			line_name
+		from service_lines
+		where parent_code = #{parentCode}
+		order by line_code
+	</select>
 </mapper>

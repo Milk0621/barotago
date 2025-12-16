@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.barotago.backend.subway.dao.SubwayDAO;
 import com.barotago.backend.subway.domain.ServiceLine;
+import com.barotago.backend.subway.dto.SubwayChildLineResponseDTO;
 import com.barotago.backend.subway.dto.SubwayLineResponseDTO;
 
 @Service
@@ -38,4 +39,25 @@ public class SubwayServiceImpl implements SubwayService {
 		
 		return result;
 	}
+
+	@Override
+	public List<SubwayChildLineResponseDTO> getChildLines(String parentCode) {
+		
+		List<ServiceLine> lines = subwayDAO.selectChildLines(parentCode);
+		
+		List<SubwayChildLineResponseDTO> result = new ArrayList<>();
+		for(int i = 0; i < lines.size(); i++) {
+			
+			ServiceLine line = lines.get(i);
+			
+			SubwayChildLineResponseDTO dto = new SubwayChildLineResponseDTO();
+			dto.setLineCode(line.getLineCode());
+			dto.setLineName(line.getLineName());
+			
+			result.add(dto);
+		}
+		
+		return result;
+	}
+	
 }
