@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.barotago.backend.subway.dao.SubwayDAO;
-import com.barotago.backend.subway.domain.ServiceLine;
+import com.barotago.backend.subway.dto.SubwayLineResponseDTO;
+import com.barotago.backend.subway.service.SubwayService;
 
 @RestController
 @RequestMapping("/api/subway")
 public class SubwayController {
-	private final SubwayDAO subwayDAO;
+	private final SubwayService subwayService;
 
-    public SubwayController(SubwayDAO subwayDAO) {
-        this.subwayDAO = subwayDAO;
+    public SubwayController(SubwayService subwayService) {
+        this.subwayService = subwayService;
     }
 
     @GetMapping("/lines")
-    public List<ServiceLine> test() {
-        return subwayDAO.selectMainLines();
+    public List<SubwayLineResponseDTO> getMainLines() {
+        return subwayService.getMainLines();
     }
 }
