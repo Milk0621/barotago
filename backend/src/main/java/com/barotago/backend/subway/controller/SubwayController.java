@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.barotago.backend.subway.dto.LineStationResponseDTO;
 import com.barotago.backend.subway.dto.SubwayChildLineResponseDTO;
 import com.barotago.backend.subway.dto.SubwayLineResponseDTO;
 import com.barotago.backend.subway.service.SubwayService;
@@ -28,5 +29,10 @@ public class SubwayController {
     @GetMapping("/lines/{lineCode}/children")
     public List<SubwayChildLineResponseDTO> getChildLines(@PathVariable("lineCode") String parentCode) {
     	return subwayService.getChildLines(parentCode);
+    }
+    
+    @GetMapping("/lines/{lineCode}/stations")
+    public List<LineStationResponseDTO> getStationsByLine(@PathVariable("lineCode") String lineCode) {
+        return subwayService.getStationsByLine(lineCode);
     }
 }

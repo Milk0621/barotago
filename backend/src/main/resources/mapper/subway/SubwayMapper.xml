@@ -12,7 +12,7 @@
 			text_color,
 			order_no
 		from service_lines
-		where parent_code is null
+		where line_code = parent_code
 		order by order_no
 	</select>
 	<select id="selectChildLines" resultType="ServiceLine">
@@ -22,5 +22,16 @@
 		from service_lines
 		where parent_code = #{parentCode}
 		order by line_code
+	</select>
+	<select id="findStationByLineCode" resultType="LineStationResponseDTO">
+		select
+			sls.sequence_no,
+			s.station_name,
+			s.station_cd
+		from service_line_station sls
+		join station s
+			on sls.station_id = s.station_id
+		where sls.line_code = #{lineCode}
+		order by sls.sequence_no asc
 	</select>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.barotago.backend.subway.dao.SubwayDAO;
 import com.barotago.backend.subway.domain.ServiceLine;
+import com.barotago.backend.subway.dto.LineStationResponseDTO;
 import com.barotago.backend.subway.dto.SubwayChildLineResponseDTO;
 import com.barotago.backend.subway.dto.SubwayLineResponseDTO;
 
@@ -58,6 +59,11 @@ public class SubwayServiceImpl implements SubwayService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<LineStationResponseDTO> getStationsByLine(String lineCode) {
+		return subwayDAO.findStationByLineCode(lineCode);
 	}
 	
 }

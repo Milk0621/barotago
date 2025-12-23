@@ -1,15 +1,15 @@
 package com.barotago.backend.subway.dto;
 
 public class LineStationResponseDTO {
-	private String stationCode;
+	private String stationCd;
 	private String stationName;
 	private int sequenceNo;
 	
-	public String getStationCode() {
-		return stationCode;
+	public String getStationCd() {
+		return stationCd;
 	}
-	public void setStationCode(String stationCode) {
-		this.stationCode = stationCode;
+	public void setStationCd(String stationCd) {
+		this.stationCd = stationCd;
 	}
 	public String getStationName() {
 		return stationName;
