@@ -39,7 +39,7 @@ function SubwayLine({color, textColor, stations, size}) {
                             {ordered.map((st, idx) => (
                                 <div className="station" key={idx} onClick={()=> {setSelectedStation(st)}}>
                                     <i className="dot" style={{borderColor: color}} />
-                                    <span className="label">{st.name}</span>
+                                    <span className="label">{st.stationName}</span>
                                 </div>
                             ))}
                         </div>

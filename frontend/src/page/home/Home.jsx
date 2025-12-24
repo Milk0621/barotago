@@ -2,19 +2,48 @@ import { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import SubwayLine from "../../components/subwayLine/SubwayLine";
 import HeaderBar from "../../components/headerBar/HeaderBar";
+import api from "../../api/api";
 
-// 노선 정보 (컴포넌트 밖으로 빼서 재생성을 막음)
-const subwayLines = [
-    { "lineCode": "LINE1", "lineName": "1호선", "colorHex": "#0F218B", "textColor": "light" },
-    { "lineCode": "LINE2", "lineName": "2호선", "colorHex": "#10a643", "textColor": "light" },
-    { "lineCode": "LINE3", "lineName": "3호선", "colorHex": "#de6d00", "textColor": "light" },
-];
 
 function Home() {
     const [listOpen, setListOpen] = useState(false);                    // 드롭다운 상태
-    const [selectedLine, setSelectedLine] = useState(subwayLines[0]);   // 현재 호선
+    const [subwayLines, setSubwayLines] = useState([]);               // 노선 목록
+    const [selectedLine, setSelectedLine] = useState(null);             // 현재 선택된 호선
+    const [subwayChildLines, setSubwayChildLines] = useState([]);     // 하위 노선 목록
+    const [selectedChildLine, setSelectedChildLine] = useState(null);   // 현재 선택된 하위 호선
+    const [lineStations, setLineStations] = useState([]);
     const dropdownRef = useRef(null);                   
     
+    // 노선 목록 조회 API
+    useEffect(()=>{
+        async function fetchLines() {
+            const res = await api.get("/subway/lines");
+            
+            setSubwayLines(res.data);
+            setSelectedLine(res.data[0]);
+        }
+        fetchLines();
+    }, []);
+    
+    // 하위 노선 목록 조회 API, 노선별 역 목록 API
+    useEffect(()=>{
+        if (!selectedLine) return;
+        
+        async function fetchChildLines() {
+            const res = await api.get(`/subway/lines/${selectedLine.lineCode}/children`);
+            
+            setSubwayChildLines(res.data);
+            setSelectedChildLine(res.data[0]);
+        }
+        fetchChildLines();
+
+        async function fetchLineStations() {
+            const res = await api.get(`/subway/lines/${selectedLine.lineCode}/stations`);
+
+            setLineStations(res.data);
+        }
+        fetchLineStations();
+    }, [selectedLine]);
 
     // 드롭다운 밖 클릭 감지 이벤트
     useEffect(()=>{
@@ -33,60 +62,46 @@ function Home() {
         }
     }, [listOpen]);
 
-    // 노선별 역 목록 (API 연동 예정)
-    const lineStations = [
-        { 
-            name: "연천", 
-            address: "경기도 연천군 연천읍 연천로 275", 
-            phone: "1544-7788", 
-            lineCodes: ["LINE1"], 
-            lineName: ["1호선"],
-            label: ["1"],
-            facilities: [
-                {
-                    name: "엘리베이터",
-                    iconColor: "#DE3517",
-                },
-                {
-                    name: "휠체어리프트",
-                    iconColor: "#C7B10D",
-                },
-                {
-                    name: "무인민원발급",
-                    iconColor: "#42AD11",
-                },
-                {
-                    name: "문화공간",
-                    iconColor: "#1161AD",
-                },
-                {
-                    name: "유아수유방",
-                    iconColor: "#6411AD",
-                },
-            ] 
-        }, 
-        { name: "전곡" }, { name: "청산" }, { name: "소요산" }, { name: "동두천" }, { name: "보산" }, { name: "동두천중앙" },{ name: "지행" }, { name: "덕정" }, { name: "덕계" }, { name: "양주" }, { name: "녹양" }, { name: "가능" }, { name: "의정부" }, { name: "서울"}
-    ];
-
     return(
         <>
-            <HeaderBar
-                type="line"
-                subwayLines={subwayLines}
-                selectedLine={selectedLine}
-                setSelectedLine={setSelectedLine}
-            />
-            <div className="line-info">
-                <div className="route-group">
-                    <button>1호선</button>
-                    <button>경인선 (구로-인천)</button>
-                    <button>경부 장항선(구로-신창)</button>
-                    <button>경부고속선</button>
-                    <button>병점기지선</button>
-                </div>
-                <span>{selectedLine.lineName} 0대 운행 중</span>
-            </div>
-            <SubwayLine color={selectedLine.colorHex} textColor={selectedLine.textColor} stations={lineStations} size={7} />
+            {selectedLine && subwayLines && (
+                <HeaderBar
+                    type="line"
+                    subwayLines={subwayLines}
+                    selectedLine={selectedLine}
+                    setSelectedLine={setSelectedLine}
+                />
+            )}
+
+            {selectedLine && subwayChildLines && (
+                <>
+                    <div className="line-info">
+                        <div className="route-group">
+                            {subwayChildLines.map((childLine, idx)=>{
+                                const isSelected = selectedChildLine?.lineCode === childLine.lineCode;
+                                return (
+                                    <button 
+                                        key={idx} 
+                                        className={`${isSelected ? "active" : ""}`}
+                                        style={{"--line-color": selectedLine.colorHex}}
+                                        onClick={()=> setSelectedChildLine(childLine)}
+                                    >
+                                        {childLine.lineName}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                        <span>{selectedLine.lineName} 0대 운행 중</span>
+                    </div>
+
+                    <SubwayLine
+                        color={selectedLine.colorHex}
+                        textColor={selectedLine.textColor}
+                        stations={lineStations}
+                        size={7}
+                    />
+                </>
+            )}
         </>
     )
 }
