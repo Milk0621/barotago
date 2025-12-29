@@ -36,14 +36,19 @@ function Home() {
             setSelectedChildLine(res.data[0]);
         }
         fetchChildLines();
+    }, [selectedLine]);
+
+    useEffect(() => {
+        if (!selectedChildLine) return;
 
         async function fetchLineStations() {
-            const res = await api.get(`/subway/lines/${selectedLine.lineCode}/stations`);
+            const res = await api.get(`/subway/lines/${selectedChildLine.lineCode}/stations`);
 
             setLineStations(res.data);
         }
+
         fetchLineStations();
-    }, [selectedLine]);
+    }, [selectedChildLine]);
 
     // 드롭다운 밖 클릭 감지 이벤트
     useEffect(()=>{
