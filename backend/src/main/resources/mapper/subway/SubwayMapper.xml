@@ -34,4 +34,24 @@
 		where sls.line_code = #{lineCode}
 		order by sls.sequence_no asc
 	</select>
+	<select id="findStationDetailById">
+		select
+		    station_id,
+		    station_name,
+		    address,
+		    latitude,
+		    longitude,
+		    phone
+		from station
+		where station_id = #{stationId};
+	</select>
+	<select id="findFacilitiesByStationId">
+		select
+		    f.facility_name,
+		    f.icon_color
+		from station_facility sf
+		join facility f
+		  	on sf.facility_id = f.facility_id
+		where sf.station_id = #{stationId};
+	</select>
 </mapper>
