@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.barotago.backend.subway.dao.SubwayDAO">
+	<!-- 메인 노선 조회 (1호선, 2호선 등) -->
 	<select id="selectMainLines" resultType="ServiceLine">
 		select 
 			line_code,
@@ -15,6 +16,7 @@
 		where line_code = parent_code
 		order by order_no
 	</select>
+	<!-- 하위 노선 조회 (지선, 분기 노선 등) -->
 	<select id="selectChildLines" resultType="ServiceLine">
 		select
 			line_code,
@@ -23,6 +25,7 @@
 		where parent_code = #{parentCode}
 		order by line_code
 	</select>
+	<!-- 노선별 역 목록 조회 -->
 	<select id="findStationByLineCode" resultType="LineStationResponseDTO">
 		select
 			sls.sequence_no,
@@ -34,6 +37,7 @@
 		where sls.line_code = #{lineCode}
 		order by sls.sequence_no asc
 	</select>
+	<!-- 역 기본 정보 단건 조회 -->
 	<select id="findStationDetailById">
 		select
 		    station_id,
@@ -45,6 +49,7 @@
 		from station
 		where station_id = #{stationId};
 	</select>
+	<!-- 역 편의시설 목록 조회 -->
 	<select id="findFacilitiesByStationId">
 		select
 		    f.facility_name,
