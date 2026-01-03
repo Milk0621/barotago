@@ -37,26 +37,4 @@
 		where sls.line_code = #{lineCode}
 		order by sls.sequence_no asc
 	</select>
-	<!-- 역 기본 정보 단건 조회 -->
-	<select id="findStationDetailById">
-		select
-		    station_id,
-		    station_name,
-		    address,
-		    latitude,
-		    longitude,
-		    phone
-		from station
-		where station_id = #{stationId};
-	</select>
-	<!-- 역 편의시설 목록 조회 -->
-	<select id="findFacilitiesByStationId">
-		select
-		    f.facility_name,
-		    f.icon_color
-		from station_facility sf
-		join facility f
-		  	on sf.facility_id = f.facility_id
-		where sf.station_id = #{stationId};
-	</select>
 </mapper>
