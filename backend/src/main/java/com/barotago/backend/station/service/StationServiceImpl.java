@@ -1,9 +1,13 @@
 package com.barotago.backend.station.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.barotago.backend.station.dao.StationDAO;
 import com.barotago.backend.station.dto.StationDetailResponseDTO;
+import com.barotago.backend.station.dto.StationFacilityResponseDTO;
 
 @Service
 public class StationServiceImpl implements StationService {
@@ -16,6 +20,11 @@ public class StationServiceImpl implements StationService {
 	@Override
 	public StationDetailResponseDTO getStationInfo(int StationId) {
 		return stationDAO.findStationDetailById(StationId);
+	}
+
+	@Override
+	public List<StationFacilityResponseDTO> getStationFacility(int stationId) {
+		return stationDAO.findFacilitiesByStationId(stationId);
 	}
 	
 }
