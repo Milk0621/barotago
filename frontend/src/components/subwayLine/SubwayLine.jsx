@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import './SubwayLine.css';
+import facility_icon_map from '../../constants/facilityIcons';
 import { Link } from 'react-router-dom';
+import api from '../../api/api';
 
 // 지하철 노선 자르기
 // 총 20개의 역을 7개씩 자른다고 했을 때 arr.length = 20, size = 7
@@ -62,19 +64,44 @@ function SubwayLine({color, textColor, stations, size}) {
 function StationInfo({station, color, textColor, onClose}) {
     const modalRef = useRef(null);
     const mapRef = useRef(null);
+    const [selectedStationInfo, setSelectedStationInfo] = useState(null);
+    const [stationFacilities, setStationFacilities] = useState([]);
+    
+    useEffect(()=>{
+        if(!station) return;
+        async function fetchStationInfo(){
+            const res = await api.get(`/stations/${station.stationId}`);
+            
+            setSelectedStationInfo(res.data);
+            console.log(res.data);
+        }
+
+        async function fetchStationFacilities(){
+            const res = await api.get(`/stations/${station.stationId}/facilities`);
+
+            setStationFacilities(res.data);
+            console.log(res.data);
+        }
+
+        fetchStationInfo();
+        fetchStationFacilities();
+    }, [station])
 
     useEffect(() => {
+        if (!selectedStationInfo) return;
+        if (!window.kakao || !window.kakao.maps) return;
+
         const kakao = window.kakao;
         const container = mapRef.current; // 지도를 담을 영역의 DOM 참조
 
         // 지도를 생성할 때 필요한 기본 옵션
         const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
-        level: 3,
+            center: new kakao.maps.LatLng(selectedStationInfo.lng, selectedStationInfo.lat), // 지도의 중심좌표.
+            level: 3,
         };
 
         new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-    }, []);
+    }, [selectedStationInfo]);
 
     useEffect(() => {
         function handleClickOutside(e) {
@@ -89,6 +116,8 @@ function StationInfo({station, color, textColor, onClose}) {
         }
     }, [onClose]);
 
+    if (!selectedStationInfo || !stationFacilities) return null;
+
     return (
         <div className="station-overlay" onClick={onClose}>
             <div className="station-modal"  ref={modalRef} onClick={(e) => e.stopPropagation()} style={{ borderColor: color }}>
@@ -101,24 +130,23 @@ function StationInfo({station, color, textColor, onClose}) {
                 >
                     <span>◀</span>
                     <div className="station-name">
-                        <i style={{backgroundColor: color, fontSize: ".9rem"}}>{station.label}</i>
-                        <h3>{station.name}</h3>
+                        <h3>{selectedStationInfo.stationName}</h3>
                     </div>
                     <span>▶</span>
                 </div>
                 <div className="info-box">
                     <div className="info-basic">
                         <p>주소</p>
-                        <span>{station.address}</span>
+                        <span>{selectedStationInfo.address}</span>
                         <p>전화번호</p>
-                        <span>{station.phone}</span>
+                        <span>{selectedStationInfo.telno}</span>
                     </div>
                     <div className="facilities">
                         {
-                            station.facilities.map((fc, idx)=>(
-                                <div className="facility">
-                                    <i className="icon" style={{backgroundColor: fc.iconColor}}></i>
-                                    <p>{fc.name}</p>
+                            stationFacilities.map((fc, idx)=>(
+                                <div className="facility" key={idx}>
+                                    <img src={facility_icon_map[fc.icon]} alt={fc.facilityNameKo} />
+                                    <p>{fc.facilityNameKo}</p>
                                 </div>
                             ))
                         }
