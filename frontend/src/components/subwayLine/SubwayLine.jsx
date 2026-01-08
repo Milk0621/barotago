@@ -20,7 +20,7 @@ function SubwayLine({color, textColor, stations, size}) {
 
     const rows = chunk(stations, size);
 
-    const [selectedStation, setSelectedStation] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(null);
 
     return (
         <>
@@ -39,7 +39,12 @@ function SubwayLine({color, textColor, stations, size}) {
                     return (
                         <div key={rIdx} className={`stations ${isEvenRow ? "stations-ltr" : "stations-rtl"} ${hasNext ? isEvenRow ? "row-connector-r" : "row-connector-l" : ""}`} style={{ '--line-color': color }}>
                             {ordered.map((st, idx) => (
-                                <div className="station" key={idx} onClick={()=> {setSelectedStation(st)}}>
+                                <div className="station" 
+                                    key={idx} 
+                                    onClick={() => setSelectedIndex(
+                                        stations.findIndex(s => s.stationId === st.stationId)
+                                    )}
+                                >
                                     <i className="dot" style={{borderColor: color}} />
                                     <span className="label">{st.stationName}</span>
                                 </div>
@@ -49,24 +54,43 @@ function SubwayLine({color, textColor, stations, size}) {
                 })}
             </div>
 
-            {selectedStation && (
+            {selectedIndex !== null && (
                 <StationInfo
-                    station={selectedStation}
+                    stations={stations}
+                    currentIndex={selectedIndex}
+                    onChangeIndex={setSelectedIndex}
                     color={color}
                     textColor={textColor}
-                    onClose={() => setSelectedStation(null)} 
+                    onClose={() => setSelectedIndex(null)} 
                 />
             )}
         </>
     )
 }
 
-function StationInfo({station, color, textColor, onClose}) {
+function StationInfo({stations, currentIndex, onChangeIndex, color, textColor, onClose}) {
     const modalRef = useRef(null);
     const mapRef = useRef(null);
-    const [selectedStationInfo, setSelectedStationInfo] = useState(null);
-    const [stationFacilities, setStationFacilities] = useState([]);
+
+    const station = stations[currentIndex]; // 현재 선택된 역
+    const [selectedStationInfo, setSelectedStationInfo] = useState(null);   // 현재 선택된 역 상세정보
+    const [stationFacilities, setStationFacilities] = useState([]); // 현재 선택된 역의 편의시설 목록
+
+    // 이전 역 이동
+    const goPrev = () => {
+        if (currentIndex > 0) {
+            onChangeIndex(currentIndex - 1);
+        }
+    };
+
+    // 다음 역 이동
+    const goNext = () => {
+        if (currentIndex < stations.length - 1) {
+            onChangeIndex(currentIndex + 1);
+        }
+    };
     
+    // 역 상세 정보 + 편의시설 조회
     useEffect(()=>{
         if(!station) return;
         async function fetchStationInfo(){
@@ -87,6 +111,7 @@ function StationInfo({station, color, textColor, onClose}) {
         fetchStationFacilities();
     }, [station])
 
+    // 카카오 지도 생성
     useEffect(() => {
         if (!selectedStationInfo) return;
         if (!window.kakao || !window.kakao.maps) return;
@@ -103,6 +128,7 @@ function StationInfo({station, color, textColor, onClose}) {
         new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
     }, [selectedStationInfo]);
 
+    // 모달 외부 클릭 감지
     useEffect(() => {
         function handleClickOutside(e) {
             if(modalRef.current && !modalRef.current.contains(e.target)){
@@ -128,11 +154,11 @@ function StationInfo({station, color, textColor, onClose}) {
                         color: textColor === "light" ? "#fff" : "#111"
                     }}
                 >
-                    <span>◀</span>
+                    <span onClick={goPrev}>◀</span>
                     <div className="station-name">
                         <h3>{selectedStationInfo.stationName}</h3>
                     </div>
-                    <span>▶</span>
+                    <span onClick={goNext}>▶</span>
                 </div>
                 <div className="info-box">
                     <div className="info-basic">
