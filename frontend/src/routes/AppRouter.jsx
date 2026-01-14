@@ -9,7 +9,6 @@ function AppRouter() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="/timetable" />
                     <Route path="/search" element={<RouteSearch />} />
                     <Route path="/notice" />
                 </Route>

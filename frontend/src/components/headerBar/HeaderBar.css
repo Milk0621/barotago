@@ -1,5 +1,5 @@
 .dropdown, .page-bar {
-    height: 40px;
+    height: 45px;
     background-color: var(--line-1);
     text-align: center;
     position: relative;
@@ -9,10 +9,10 @@
     border: none;
     background: none;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     padding: 0;
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .dropdown-btn:hover {

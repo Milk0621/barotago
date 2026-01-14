@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './SubwayLine.css';
 import api from '../../api/api';
 import StationInfo from '../stationInfo/StationInfo';
+import { useNavigate } from 'react-router-dom';
 
 // 지하철 노선 자르기
 // 총 20개의 역을 7개씩 자른다고 했을 때 arr.length = 20, size = 7
@@ -16,6 +17,7 @@ function chunk(arr, size) {
 
 // 노선 컴포넌트
 function SubwayLine({color, textColor, stations, size}) {
+    const navigate = useNavigate();
     const rows = chunk(stations, size);
 
     const [selectedIndex, setSelectedIndex] = useState(null);
@@ -37,6 +39,18 @@ function SubwayLine({color, textColor, stations, size}) {
         if (selectedIndex < stations.length - 1) {
             setSelectedIndex(selectedIndex + 1);
         }
+    };
+
+    const goDetail = () => {
+        navigate(`/stations/${selectedStationInfo.stationId}`, {
+            state: {
+            stationId: selectedStationInfo.stationId,
+            stations,                 // 같은 노선 역 목록
+            currentIndex: selectedIndex,
+            color,
+            textColor
+            }
+        });
     };
 
     // 역 상세 정보 + 편의시설 조회
@@ -97,6 +111,7 @@ function SubwayLine({color, textColor, stations, size}) {
                         facilities={stationFacilities}
                         onPrev={onPrev}
                         onNext={onNext}
+                        onDetail={goDetail}
                         color={color}
                         textColor={textColor}
                     />

@@ -1,24 +1,24 @@
 .station-modal {
     max-width: 1100px;
     width: 85%;
-    border: 4px solid;
     border-radius: 14px;
     background: #fff;
     overflow: hidden;
     box-shadow: 3px 3px 4px 0px rgba(0,0,0,.2);
     font-size: 1.15rem;
+    padding: 35px 40px;
 }
 
 .info-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 2px 1rem 6px 1rem;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .info-header .station-name {
-    width: 200px;
-    padding: .3rem 0;
+    width: 145px;
+    padding: 0.6rem 0;
     background-color: #fff;
     border-radius: 999px;
     text-align: center;
@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+    position: relative;
 }
 
 .info-header .station-name i {
@@ -41,23 +42,62 @@
 
 .info-header .station-name h3 {
     color: #111;
-    font-size: 1.32rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
-.info-box { 
-    width: 90%;
-    margin: 1.5rem auto; 
+.on-prev, .on-next {
+    height: 30px;
+    line-height: 30px;
+    border-radius: 999px;
+    font-size: .9rem;
+    cursor: pointer;
 }
 
-.info-basic {
+.tab {
     display: grid;
-    grid-template-columns: .4fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    margin: 30px 0;
 }
 
-.info-basic p { font-weight: 600; }
+.tab button {
+    height: 35px;
+    font-size: 14px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-.info-basic span { color: #777; }
+.tabBox1 h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.tabBox1 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabBox1 ul li {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+}
+
+.tabBox1 ul li strong {
+    color: var(--line-1);
+    font-weight: 500;
+}
+
+.tabBox1 hr {
+    margin: 35px 0;
+}
 
 .facilities {
     display: flex;
@@ -68,7 +108,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1rem;
     font-size: 1rem;
 }
 
