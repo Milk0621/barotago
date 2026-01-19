@@ -1,8 +1,27 @@
+import { useEffect, useRef } from "react";
 import facility_icon_map from "../../constants/facilityIcons";
 import "./StationInfo.css";
 
 function StationInfo({stationInfo, facilities, onPrev, onNext, color, textColor}) {
-    if (!stationInfo) return null;
+    
+    const mapRef = useRef();
+    
+    // 카카오 지도 생성
+    useEffect(() => {
+        if (!stationInfo) return null;
+        if (!window.kakao || !window.kakao.maps) return;
+
+        const kakao = window.kakao;
+        const container = mapRef.current; // 지도를 담을 영역의 DOM 참조
+
+        // 지도를 생성할 때 필요한 기본 옵션
+        const options = {
+            center: new kakao.maps.LatLng(stationInfo.lng, stationInfo.lat), // 지도의 중심좌표.
+            level: 3,
+        };
+
+        new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+    }, [stationInfo]);
 
     return (
         <div className="station-modal" onClick={(e) => e.stopPropagation()} style={{ borderColor: color }}>
@@ -67,6 +86,9 @@ function StationInfo({stationInfo, facilities, onPrev, onNext, color, textColor}
                             ))
                         }
                     </div>
+                    <hr />
+                    <h3>지도</h3>
+                    <div id="map" ref={mapRef}></div>
                 </div>
             </div>
         </div>
@@ -75,19 +97,3 @@ function StationInfo({stationInfo, facilities, onPrev, onNext, color, textColor}
 
 export default StationInfo;
 
-    // 카카오 지도 생성
-    // useEffect(() => {
-    //     if (!selectedStationInfo) return;
-    //     if (!window.kakao || !window.kakao.maps) return;
-
-    //     const kakao = window.kakao;
-    //     const container = mapRef.current; // 지도를 담을 영역의 DOM 참조
-
-    //     // 지도를 생성할 때 필요한 기본 옵션
-    //     const options = {
-    //         center: new kakao.maps.LatLng(selectedStationInfo.lng, selectedStationInfo.lat), // 지도의 중심좌표.
-    //         level: 3,
-    //     };
-
-    //     new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-    // }, [selectedStationInfo]);
