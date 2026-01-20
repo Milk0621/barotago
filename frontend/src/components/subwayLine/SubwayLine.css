@@ -1,7 +1,7 @@
 .line-wrap {
   position: relative;
   display: grid;
-  gap: 40px;                     /* 행 간 간격(세로) */
+  gap: 50px;                     /* 행 간 간격(세로) */
   margin: 4.5rem 5.5rem;
 }
 
@@ -29,10 +29,10 @@
     content: "";
     position: absolute;
     width: 22px;
-    height: 120px;
+    height: 150px;
     background: var(--line-color);
     right: calc(0px);
-    bottom: calc(0px - 65px);
+    bottom: calc(0px - 85px);
     z-index: 0;
 }
 
@@ -41,10 +41,10 @@
     content: "";
     position: absolute;
     width: 22px;
-    height: 120px;
+    height: 150px;
     background: var(--line-color);
     left: calc(0px);
-    bottom: calc(0px - 65px);
+    bottom: calc(0px - 85px);
     z-index: 0;
 }
 
