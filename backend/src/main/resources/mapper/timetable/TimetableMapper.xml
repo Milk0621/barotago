@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.barotago.backend.timetable.dao.TimetableDAO">
+	<select id="selectTimetableRaw" resultType="map">
+		select
+		    hour,
+		    inout_tag,
+		    LPAD(minute, 2, '0') as minute
+		from station_timetable
+		where station_cd = #{stationCd}
+		  and week_tag = #{weekTag}
+		  and not (hour = 0 and minute = 0)
+		order by hour, inout_tag, minute	
+	</select>
+</mapper>
