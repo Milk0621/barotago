@@ -30,7 +30,7 @@
 		select
 			sls.sequence_no,
 			s.station_name,
-			s.station_cd
+			s.station_id
 		from service_line_station sls
 		join station s
 			on sls.station_id = s.station_id
