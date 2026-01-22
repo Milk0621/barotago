@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import facility_icon_map from "../../constants/facilityIcons";
 import "./StationInfo.css";
+import api from "../../api/api";
 
 const TAB = {
     INFO: "INFO",
@@ -26,7 +27,7 @@ function StationInfo({stationInfo, facilities, onPrev, onNext, color, textColor}
             center: new kakao.maps.LatLng(stationInfo.lng, stationInfo.lat), // 지도의 중심좌표.
             level: 3,
         };
-
+ 
         new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
     }, [stationInfo, activeTab]);
 
@@ -77,7 +78,9 @@ function StationInfo({stationInfo, facilities, onPrev, onNext, color, textColor}
                 )}
 
                 {activeTab === TAB.TIMETABLE && (
-                    <TimetableTab />
+                    <TimetableTab
+                        stationCd={stationInfo.stationCd}
+                    />
                 )}
             </div>
         </div>
@@ -119,10 +122,55 @@ function InfoTab ({stationInfo, facilities, mapRef}) {
     )
 }
 
-function TimetableTab () {
+function TimetableTab ({stationCd}) {
+    const [timetable, setTimetable] = useState([]);
+    const [weekTag, setWeekTag] = useState(1); // 기본: 평일
+
+    useEffect(()=>{
+        if(!stationCd) return;
+        async function fetchTimetable() {
+            const res = await api.get(`stations/${stationCd}/timetable`, {
+                params: {weekTag}
+            });
+            setTimetable(res.data);
+
+            console.log(res.data);
+        }
+
+        fetchTimetable();
+    }, [weekTag, stationCd])
+
     return (
         <div className="tabBox1">
-            <h3>열차 시각표</h3>
+            <div className="timetable-header">
+                <h3>열차 시각표</h3>
+            </div>
+            <table className="timetable">
+                <thead>
+                    <tr>
+                        <th>상행</th>
+                        <th>시간</th>
+                        <th>하행</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {timetable.map((row, idx) => (
+                        <tr key={row.hour}>
+                            <td>
+                                {row.up.map((minute, idx) => (
+                                    <span key={idx}>{minute}</span>
+                                ))}
+                            </td>
+                            <td>{row.hour}</td>
+                            <td>
+                                {row.down.map((minute, idx) => (
+                                    <span key={idx}>{minute}</span>
+                                ))}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
