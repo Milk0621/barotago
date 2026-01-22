@@ -1,12 +1,19 @@
 package com.barotago.backend.station.dto;
 
 public class StationDetailResponseDTO {
+	private String stationCd;
 	private String stationName;
 	private String address;
 	private double lat;
 	private double lng;
 	private String telno;
 	
+	public String getStationCd() {
+		return stationCd;
+	}
+	public void setStationCd(String stationCd) {
+		this.stationCd = stationCd;
+	}
 	public String getStationName() {
 		return stationName;
 	}
