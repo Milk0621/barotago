@@ -143,4 +143,57 @@
 .timetable {
     width: 100%;
     text-align: center;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.timetable th {
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.timetable th:nth-child(2),
+.timetable td:nth-child(2) {
+    width: 80px;        /* ← 여기서 조절 */
+    font-weight: 600;
+}
+
+.timetable tr:nth-child(even) {
+    background-color: var(--bg-color);
+}
+
+.timetable tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.timetable td {
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+.timetable td:first-child,
+.timetable td:last-child {
+    display: flex;
+    flex-wrap: wrap;        /* ⭐ 줄바꿈 핵심 */
+    gap: 6px;
+    align-items: center;
+    align-content: center;
+}
+
+.timetable td:first-child {
+    justify-content: flex-end;   /* 상행 → 중앙 쪽 */
+}
+
+.timetable td:last-child {
+    justify-content: flex-start; /* 하행 → 중앙 쪽 */
+}
+
+.minute {
+    min-width: 30px;
+    height: 22px;
+    padding: 0 6px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
 }

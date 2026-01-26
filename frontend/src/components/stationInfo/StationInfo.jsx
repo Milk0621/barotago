@@ -158,13 +158,13 @@ function TimetableTab ({stationCd}) {
                         <tr key={row.hour}>
                             <td>
                                 {row.up.map((minute, idx) => (
-                                    <span key={idx}>{minute}</span>
+                                    <span class="minute" key={idx}>{minute}</span>
                                 ))}
                             </td>
                             <td>{row.hour}</td>
                             <td>
                                 {row.down.map((minute, idx) => (
-                                    <span key={idx}>{minute}</span>
+                                    <span class="minute" key={idx}>{minute}</span>
                                 ))}
                             </td>
                         </tr>
