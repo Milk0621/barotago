@@ -157,14 +157,14 @@ function TimetableTab ({stationCd}) {
                     {timetable.map((row, idx) => (
                         <tr key={row.hour}>
                             <td>
-                                {row.up.map((minute, idx) => (
-                                    <span class="minute" key={idx}>{minute}</span>
+                                {row.up.map((m, idx) => (
+                                    <span className={`minute ${m.express ? "express" : ""}`} key={idx}>{m.minute}</span>
                                 ))}
                             </td>
                             <td>{row.hour}</td>
                             <td>
-                                {row.down.map((minute, idx) => (
-                                    <span class="minute" key={idx}>{minute}</span>
+                                {row.down.map((m, idx) => (
+                                    <span className={`minute ${m.express ? "express" : ""}`} key={idx}>{m.minute}</span>
                                 ))}
                             </td>
                         </tr>

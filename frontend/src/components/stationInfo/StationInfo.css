@@ -197,3 +197,9 @@
     border: 1px solid #ccc;
     background: #fff;
 }
+
+.minute.express {
+    background-color: #ffe5ea;   /* 연한 핑크 */
+    border-color: #ff6b81;
+    font-weight: 600;
+}
