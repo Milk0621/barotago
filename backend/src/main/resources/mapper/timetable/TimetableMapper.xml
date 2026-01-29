@@ -7,7 +7,8 @@
 		select
 		    hour,
 		    inout_tag,
-		    LPAD(minute, 2, '0') as minute
+		    LPAD(minute, 2, '0') as minute,
+		    is_express
 		from station_timetable
 		where station_cd = #{stationCd}
 		  and week_tag = #{weekTag}

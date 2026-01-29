@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.barotago.backend.timetable.dao.TimetableDAO;
 import com.barotago.backend.timetable.dto.TimetableItemDTO;
+import com.barotago.backend.timetable.dto.TimetableMinuteDTO;
 
 @Service
 public class TimetableServiceImpl implements TimetableService {
@@ -44,6 +45,17 @@ public class TimetableServiceImpl implements TimetableService {
 
             // 분 값은 SQL에서 이미 문자열로 가져옴
             String minute = (String) row.get("minute");
+            Object expressObj = row.get("is_express");
+
+            boolean isExpress = false;
+
+            if (expressObj instanceof Boolean) {
+                isExpress = !((Boolean) expressObj);
+            } else if (expressObj instanceof Number) {
+                isExpress = ((Number) expressObj).intValue() == 0;
+            }
+
+            TimetableMinuteDTO minuteDTO = new TimetableMinuteDTO(minute, isExpress);
 
             // 해당 시간(hour)에 대한 객체가 이미 있는지 확인
             TimetableItemDTO item = timetableMap.get(hour);
@@ -57,10 +69,10 @@ public class TimetableServiceImpl implements TimetableService {
             // 상행 / 하행에 따라 분 추가
             if (inoutTag == 1) {
                 // 상행
-                item.getUp().add(minute);
+                item.getUp().add(minuteDTO);
             } else {
                 // 하행
-                item.getDown().add(minute);
+                item.getDown().add(minuteDTO);
             }
         }
 
