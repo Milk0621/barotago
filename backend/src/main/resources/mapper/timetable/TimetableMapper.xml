@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.barotago.backend.timetable.dao.TimetableDAO">
+<mapper namespace="com.barotago.backend.timetable.dao.mapper.TimetableMapper">
 	<select id="selectTimetableRaw" resultType="map">
 		select
 		    hour,

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.barotago.backend.subway.dao.SubwayDAO">
+<mapper namespace="com.barotago.backend.subway.dao.mapper.SubwayMapper">
 	<!-- 메인 노선 조회 (1호선, 2호선 등) -->
 	<select id="selectMainLines" resultType="ServiceLine">
 		select 
